@@ -50,15 +50,15 @@
                     <div class="mb-3">
                         <label for="roadType" class="form-label">Choose road type</label>
                         <select id="roadType" class="form-select">
-                            <option value="road"></option>
-                            <option value="circle"></option>
-                            <option value="street"></option>
-                            <option value="avenue"></option>
-                            <option value="other"></option>
+                            <option selected disabled="roadType">Choose road type</option>
+                            <option value="circle">Circle</option>
+                            <option value="street">Street</option>
+                            <option value="avenue">Avenue</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
                     <!--Submit Button-->
-                    <button type="submit" class="btn btn-primary w-100">Generate Name</button>
+                    <button type="submit" class="btn btn-primary w-100" onclick="genFullName()">Generate Name</button>
                     <!--Generated Name Output-->
                 <div class="result" id="result">
                     
