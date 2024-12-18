@@ -6,44 +6,50 @@ function genPrefix(firstName) {
     return "Master";
   }
 }
+
 //generate first name
 function genFirstName(firstName) {
   const firstLetter = firstName.charAt(0).toLowerCase();
-  if (firstLetter === "a") {
-    return "Jeff";
-  } else if (firstLetter === "b") {
-    return "Pablo";
-  } else {
-    return "Julian";
+  switch (firstLetter) {
+    case "a":
+      return "Jeff";
+    case "b":
+      return "Pablo";
+    default:
+      return "Julian";
   }
 }
 
 //generate middle name
 function genMiddleName(roadType, favoriteColor) {
-  if (roadType === "road") {
-    return `${favoriteColor}ridge`; //EX:  blueridge
-  } else if (roadType === "street") {
-    return `${favoriteColor}son`; //EX: blueson
-  } else {
-    return `${favoriteColor}stone`; //EX: bluestone
+  switch (roadType) {
+    case "road":
+      return `${favoriteColor}ridge`; //EX:  blueridge
+    case "street":
+      return `${favoriteColor}son`; //EX: blueson
+    case "other":
+      return "of the Unknown"; // Special case
+    default:
+      return `${favoriteColor}stone`; //EX: bluestone
   }
 }
 
 //generate Last Name
 function genLastName(lastName) {
-  const lastLetter = lastName.charAt(lastName.length - 1);
-  if (lastLetter === "a") {
-    return "Shadow";
-  } else if (lastLetter === "e") {
-    return "Storm";
-  } else if (lastLetter === "i") {
-    return "Blaze";
-  } else if (lastLetter === "o") {
-    return "Thorn";
-  } else if (lastLetter === "u") {
-    return "Frost";
-  } else {
-    return "Moon"; // Default last name for letters not matched
+  const lastLetter = lastName.charAt(lastName.length - 1).toLowerCase();
+  switch (lastLetter) {
+    case "a":
+      return "Shadow";
+    case "e":
+      return "Storm";
+    case "i":
+      return "Blaze";
+    case "o":
+      return "Thorn";
+    case "u":
+      return "Frost";
+    default:
+      return "Moon"; // Default last name for letters not matched
   }
 }
 
@@ -52,14 +58,20 @@ function genSuffix(favoriteAnimal) {
   return `of ${favoriteAnimal} clan.`;
 }
 
-//MAster Name Building FUnction
-function genFullName() {
-  //Get the Users Inputs from HTML Elements
+// Validate inputs and Generate Name
+function validateAndGenerate(event) {
+  event.preventDefault(); // Prevent form submission
   const firstName = document.getElementById("firstName").value.trim();
   const lastName = document.getElementById("lastName").value.trim();
   const roadType = document.getElementById("roadType").value;
   const favoriteColor = document.getElementById("favoriteColor").value.trim();
   const favoriteAnimal = document.getElementById("favoriteAnimal").value.trim();
+
+  if (!firstName || !lastName || !roadType || !favoriteColor || !favoriteAnimal || roadType === "Select Road Type") {
+    document.getElementById("result").innerHTML =
+      '<div class="alert alert-danger">Please fill out all fields before generating a name!</div>';
+    return;
+  }
 
   //Run Name Generating Functions & store them in new variables
   const prefix = genPrefix(firstName);
@@ -78,7 +90,7 @@ function genFullName() {
   const fullName = `${capitalizedPrefix} ${capitalizedFirstName} ${capitalizedMiddleName} ${capitalizedLastName} ${suffix}`;
   console.log(fullName);
   //Display the new name
-  document.getElementById("result").textContent = fullName;
+  document.getElementById("result").innerHTML = `<h3 class="text-success">${fullName}</h3>`;
 }
 
 //Capitalization Function
