@@ -57,14 +57,112 @@ h1 {
     z-index: 10;
 }
 
-.snowflake {
+/* Snowflakes Container */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  /* Snowflake Style */
+  .snowflake {
     position: absolute;
     top: -10px;
-    color: #ffffff;
-    font-size: 24px;
-    user-select: none;
-    animation: snow 10s linear infinite;
-}
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+  }
+  
+  /* Add multiple snowflakes with different sizes, animation durations, and starting positions */
+  .snowflake:nth-child(1) {
+    left: 5%;
+    animation-duration: 5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in;
+  }
+  
+  .snowflake:nth-child(2) {
+    left: 10%;
+    animation-duration: 8s;
+    animation-delay: 2s;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .snowflake:nth-child(3) {
+    left: 15%;
+    animation-duration: 10s;
+    animation-delay: 1s;
+    animation-timing-function: ease-out;
+  }
+  
+  .snowflake:nth-child(4) {
+    left: 20%;
+    animation-duration: 12s;
+    animation-delay: 3s;
+  }
+  
+  .snowflake:nth-child(5) {
+    left: 25%;
+    animation-duration: 7s;
+    animation-delay: 1.5s;
+    animation-timing-function: ease-in;
+  }
+  
+  .snowflake:nth-child(6) {
+    left: 30%;
+    animation-duration: 6s;
+    animation-delay: 2s;
+    animation-timing-function: ease-out;
+  }
+  
+  .snowflake:nth-child(7) {
+    left: 35%;
+    animation-duration: 9s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .snowflake:nth-child(8) {
+    left: 40%;
+    animation-duration: 11s;
+    animation-delay: 1.2s;
+    animation-timing-function: ease-in;
+  }
+  
+  .snowflake:nth-child(9) {
+    left: 45%;
+    animation-duration: 7s;
+    animation-delay: 2.5s;
+  }
+  
+  .snowflake:nth-child(10) {
+    left: 50%;
+    animation-duration: 6s;
+    animation-delay: 3s;
+    animation-timing-function: ease-out;
+  }
+  
+  /* Snowfall animation */
+  @keyframes fall {
+    to {
+      transform: translateY(100vh);
+    }
+  }
+  
 
 @keyframes snow {
     to {

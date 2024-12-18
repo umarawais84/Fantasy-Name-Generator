@@ -122,3 +122,22 @@ function genLastName(lastName) {
 function capitalize(input) {
   return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
 }
+
+// Function to create more snowflakes with random properties
+function generateSnowflakes() {
+  const snowflakeContainer = document.querySelector('.snowflakes');
+  for (let i = 0; i < 20; i++) { // Creating 20 snowflakes
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.style.left = Math.random() * 100 + '%';
+    snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Random duration between 5s and 10s
+    snowflake.style.animationDelay = Math.random() * 5 + 's'; // Random delay
+    snowflake.style.width = Math.random() * 10 + 5 + 'px'; // Random size between 5px and 15px
+    snowflake.style.height = snowflake.style.width; // Make the height equal to width
+    snowflakeContainer.appendChild(snowflake);
+  }
+}
+
+// Call the function to generate random snowflakes
+generateSnowflakes();
+
