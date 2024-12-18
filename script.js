@@ -6,73 +6,79 @@ function genPrefix(firstName) {
     return "Master";
   }
 }
-
-//Generate first name
+//generate first name
 function genFirstName(firstName) {
   const firstLetter = firstName.charAt(0).toLowerCase();
   if (firstLetter === "a") {
     return "Jeff";
-  } else if (firstLetter === "a") {
+  } else if (firstLetter === "b") {
     return "Pablo";
   } else {
     return "Julian";
   }
 }
 
-//Generate middle name
+//generate middle name
 function genMiddleName(roadType, favoriteColor) {
   if (roadType === "road") {
-    return `${favoriteColor}ridge`; //EX: Blueridge
+    return `${favoriteColor}ridge`; //EX:  blueridge
   } else if (roadType === "street") {
-    return `${favoriteColor}son`;
+    return `${favoriteColor}son`; //EX: blueson
   } else {
-    return `${favoriteColor}stone`;
+    return `${favoriteColor}stone`; //EX: bluestone
   }
 }
 
-//Generate last name
+//generate Last Name
 function genLastName(lastName) {
   const lastLetter = lastName.charAt(lastName.length - 1);
   if (lastLetter === "a") {
-    return "shadow";
+    return "Shadow";
   } else if (lastLetter === "e") {
     return "Storm";
+  } else if (lastLetter === "i") {
+    return "Blaze";
+  } else if (lastLetter === "o") {
+    return "Thorn";
+  } else if (lastLetter === "u") {
+    return "Frost";
   } else {
-    return "Moon";
+    return "Moon"; // Default last name for letters not matched
   }
 }
 
-//Generate suffix
-function genSuffix(favAnimal) {
-  return `of ${favAnimal} clan.`;
+//generate Suffix
+function genSuffix(favoriteAnimal) {
+  return `of ${favoriteAnimal} clan.`;
 }
 
-//Master Name Building Function
+//MAster Name Building FUnction
 function genFullName() {
   //Get the Users Inputs from HTML Elements
   const firstName = document.getElementById("firstName").value.trim();
   const lastName = document.getElementById("lastName").value.trim();
-  const roadType = document.getElementById("roadType").value.trim();
+  const roadType = document.getElementById("roadType").value;
   const favoriteColor = document.getElementById("favoriteColor").value.trim();
-  const favAnimal = document.getElementById("favAnimal").value.trim();
-  //Run Name Generating Functions & sore them in new variables
-  const prefix = capitalize(firstName);
-  const newFirstName = genPrefix(firstName);
-  const middleName = genPrefix(roadType, favoriteColor);
-  const newLastName = genPrefix(lastName);
-  const suffix = genPrefix(favAnimal);
+  const favoriteAnimal = document.getElementById("favoriteAnimal").value.trim();
 
+  //Run Name Generating Functions & store them in new variables
+  const prefix = genPrefix(firstName);
+  const newFirstName = genFirstName(firstName);
+  const middleName = genMiddleName(roadType, favoriteColor);
+  const newLastName = genLastName(lastName);
+  const suffix = genSuffix(favoriteAnimal);
 
-  const capitilizedPrefix = capitalize(firstName);
-  const capitilizenewFirstName = capitalize(firstName);
-  const capitilizemiddleName = capitalize(roadType, favoriteColor);
-  const capitilizenewLastName = capitalize(lastName);
-  const capitilizesuffix = capitalize(favAnimal);
   //Capitalize Name Variables when needed
+  const capitalizedPrefix = capitalize(prefix);
+  const capitalizedFirstName = capitalize(newFirstName);
+  const capitalizedMiddleName = capitalize(middleName);
+  const capitalizedLastName = capitalize(newLastName);
 
   //Combine all of the Name variables in a new name
-
+  const fullName = `${capitalizedPrefix} ${capitalizedFirstName} ${capitalizedMiddleName} ${capitalizedLastName} ${suffix}`;
+  console.log(fullName);
   //Display the new name
+  document.getElementById("result").textContent = fullName;
 }
 
 //Capitalization Function
